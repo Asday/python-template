@@ -16,15 +16,22 @@ else
   AUTHOR_EMAIL=$4
 fi
 
-virtualenv --python=PYTHON env
+# Get the list of Python versions installed.
+PYTHON_VERSIONS=$(find /usr/bin -executable -regex '.*python[0-9]+\.[0-9]+' -print)
+LATEST_PYTHON_VERSION=echo "$PYTHON_VERSIONS" | sort | tail -n1
+
+virtualenv --python=$LATEST_PYTHON_VERSION env
 . env/bin/activate
 
 # Check the project name is a valid identifier
 if ! python -c "$PROJECT_NAME=0"; then
   echo 'Your project name must be a valid python identifier.'
   rm -rf env
-  exit 2
+  exit 3
 fi
+
+# Add the python versions to the setup and tox.
+./inject_python_versions.py
 
 pip install -r requirements-dev.txt
 
@@ -52,9 +59,11 @@ mv _tmp setup.py
 sed "s|__EMAIL__|$AUTHOR_EMAIL|g" setup.py > _tmp
 mv _tmp setup.py
 
+# Clean up.
 mv README-template.md README.md
 
 rm setup.sh
+rm inject_python_versions.py
 rm -rf .git
 git init
 git add .
