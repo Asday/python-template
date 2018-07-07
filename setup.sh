@@ -1,4 +1,4 @@
-if [ $# -ne 0 ] || [ $# -ne 4 ]; then
+if [ $# -ne 0 ] && [ $# -ne 4 ]; then
   echo 'Usage:  ./setup.sh [project_name project_description author_name author_email]'
   exit 1
 fi
