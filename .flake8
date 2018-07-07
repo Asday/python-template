@@ -1,0 +1,6 @@
+[flake8]
+exclude=
+  # Protobuf generated files
+  *_pb2.py,
+  # Django migration folders
+  migrations

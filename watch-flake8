@@ -1,0 +1,7 @@
+#!/bin/sh
+
+clear
+flake8 && echo "Watching for python file changes..."
+
+watchmedo shell-command --patterns="*.py" --recursive \
+  --command="clear; echo \"Linting...\"; flake8 && clear && echo \"flake8 ok\""
