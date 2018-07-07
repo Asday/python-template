@@ -19,6 +19,10 @@ else
   AUTHOR_EMAIL=$4
 fi
 
+escape_apostrophes() {
+  echo "$1" | sed "s|'|\\\\\\\'|g"
+}
+
 # Get the list of Python versions installed.
 PYTHON_VERSIONS=$(find /usr/bin -executable -regex '.*python[0-9]+\.[0-9]+' -print)
 LATEST_PYTHON_VERSION=$(echo "$PYTHON_VERSIONS" | sort | tail -n1)
@@ -45,18 +49,18 @@ sed "s|\(import \)project_name|\1$PROJECT_NAME|g" tests/test_main.py > _tmp
 mv _tmp tests/test_main.py
 
 sed "s|__YEAR__|`date +%Y`|g" LICENSE > _tmp
-mv _tmp LICENCSE
+mv _tmp LICENSE
 
-sed "s|__AUTHOR__|$AUTHOR_NAME|g" LICENSE > _tmp
-mv _tmp LICENCSE
+sed "s|__AUTHOR__|$(escape_apostrophes "$AUTHOR_NAME")|g" LICENSE > _tmp
+mv _tmp LICENSE
 
 sed "s|__PROJECT_NAME__|$PROJECT_NAME|g" setup.py > _tmp
 mv _tmp setup.py
 
-sed "s|__DESCRIPTION__|$PROJECT_DESCRIPTION|g" setup.py > _tmp
+sed "s|__DESCRIPTION__|$(escape_apostrophes "$PROJECT_DESCRIPTION")|g" setup.py > _tmp
 mv _tmp setup.py
 
-sed "s|__AUTHOR__|$AUTHOR_NAME|g" setup.py > _tmp
+sed "s|__AUTHOR__|$(escape_apostrophes "$AUTHOR_NAME")|g" setup.py > _tmp
 mv _tmp setup.py
 
 sed "s|__EMAIL__|$AUTHOR_EMAIL|g" setup.py > _tmp
