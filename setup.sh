@@ -21,7 +21,7 @@ fi
 
 # Get the list of Python versions installed.
 PYTHON_VERSIONS=$(find /usr/bin -executable -regex '.*python[0-9]+\.[0-9]+' -print)
-LATEST_PYTHON_VERSION=echo "$PYTHON_VERSIONS" | sort | tail -n1
+LATEST_PYTHON_VERSION=$(echo "$PYTHON_VERSIONS" | sort | tail -n1)
 
 virtualenv --python=$LATEST_PYTHON_VERSION env
 . env/bin/activate
