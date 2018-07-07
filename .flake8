@@ -3,4 +3,6 @@ exclude=
   # Protobuf generated files
   *_pb2.py,
   # Django migration folders
-  migrations
+  migrations,
+  # Site-packages and friends
+  env

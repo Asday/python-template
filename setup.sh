@@ -45,7 +45,7 @@ pip install -r requirements-dev.txt
 # Replace placeholders
 mv src/project_name src/$PROJECT_NAME
 
-sed "s|\(import \)project_name|\1$PROJECT_NAME|g" tests/test_main.py > _tmp
+sed "s|__PROJECT_NAME__|$PROJECT_NAME|g" tests/test_main.py > _tmp
 mv _tmp tests/test_main.py
 
 sed "s|__YEAR__|`date +%Y`|g" LICENSE > _tmp

@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
 from glob import glob
-import io
-from os.path import basename, dirname, join, splitext
-import re
+from os.path import basename, splitext
 from setuptools import find_packages, setup
 
 
@@ -22,7 +20,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers  # noqa
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
