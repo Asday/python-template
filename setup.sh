@@ -29,7 +29,7 @@ fi
 pip install -r requirements-dev.txt
 
 # Replace placeholders
-mv src project_name $PROJECT_NAME
+mv src/project_name src/$PROJECT_NAME
 
 sed "s|\(import \)project_name|\1$PROJECT_NAME|g" tests/test_main.py > _tmp
 mv _tmp tests/test_main.py
