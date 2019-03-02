@@ -7,5 +7,4 @@ else
   exit
 fi
 
-detox
-sleep 1
+tox --parallel all

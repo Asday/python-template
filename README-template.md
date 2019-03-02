@@ -7,4 +7,4 @@ pip install -r requirements-dev.txt
 
 # Running tests
 
-`detox`.
+`tox --parallel all`.
